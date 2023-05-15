@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.openclassrooms.safetynet.model.DataManager;
-import com.openclassrooms.safetynet.model.FireStation;
-import com.openclassrooms.safetynet.model.House;
-import com.openclassrooms.safetynet.model.Person;
+import com.openclassrooms.safetynet.domain.DataManager;
+import com.openclassrooms.safetynet.domain.FireStation;
+import com.openclassrooms.safetynet.domain.House;
+import com.openclassrooms.safetynet.domain.Person;
 import com.openclassrooms.safetynet.response.ChildAlertResponse;
 import com.openclassrooms.safetynet.response.CommunityEmailResponse;
 import com.openclassrooms.safetynet.response.FireResponse;

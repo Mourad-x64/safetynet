@@ -1,4 +1,4 @@
-package com.openclassrooms.safetynet.model;
+package com.openclassrooms.safetynet.domain;
 
 import java.util.ArrayList;
 import java.util.List;

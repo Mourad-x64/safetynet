@@ -1,4 +1,4 @@
-package com.openclassrooms.safetynet.model;
+package com.openclassrooms.safetynet.domain;
 
 import java.net.URL;
 import java.time.LocalDate;

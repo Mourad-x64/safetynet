@@ -3,7 +3,7 @@ package com.openclassrooms.safetynet.response;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.openclassrooms.safetynet.model.Person;
+import com.openclassrooms.safetynet.domain.Person;
 
 public class FloodStationsResponse {
 	
