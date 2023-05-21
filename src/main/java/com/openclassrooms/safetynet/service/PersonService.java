@@ -10,20 +10,23 @@ public interface PersonService {
 
 
 
-    public void createPerson(List<Person> emp);
+    public Person createPerson(Person person) throws Exception;
 
 
     public Collection<Person> getAllPersons();
 
 
-    public Optional<Person> findPersonById(int id);
+    public Optional<Person> findPersonById(String id);
 
 
-    public void deletePersonById(int id);
+    public void deletePersonById(String id);
 
 
-    public void updatePerson(Person person);
+    public Person updatePerson(Person person);
 
 
     public void deleteAllPersons();
+
+
+	public Person findByLastNameAndFirstName(String lastName, String firstName);
 }

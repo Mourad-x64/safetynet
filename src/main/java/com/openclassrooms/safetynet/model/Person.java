@@ -7,20 +7,35 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Person {	
 
 	    @Id
-	    private int id;
+	    private String id;
 	    private String firstName;
 	    private String lastName;
 	    private String eMail;
 	    private String age;
 	    private String dateOfBirth;
 	    private String phoneNumber;
+	    private String address;
 	    private String city;
+	    private String zip;   
+	    	    
 	    
 	    
-		public int getId() {
+		public String getZip() {
+			return zip;
+		}
+		public void setZip(String zip) {
+			this.zip = zip;
+		}
+		public String getAddress() {
+			return address;
+		}
+		public void setAddress(String address) {
+			this.address = address;
+		}
+		public String getId() {
 			return id;
 		}
-		public void setId(int id) {
+		public void setId(String id) {
 			this.id = id;
 		}
 		public String getFirstName() {

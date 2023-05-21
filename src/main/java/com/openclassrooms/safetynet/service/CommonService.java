@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,8 @@ public class CommonService {
 	
 	@Autowired
 	private DataManager dataManager; 
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
     
     
     
@@ -75,6 +79,8 @@ public class CommonService {
     	result.setPersons(personDTO);
     	result.setAdultNumber(adult);
     	result.setChildNumber(child);
+    	
+    	logger.debug("Getting all firestations.");
         return result;
     }
     
@@ -98,7 +104,7 @@ public class CommonService {
     	result.setAdults(adults);
     	result.setChildrens(childrens);
     	
-    	
+    	logger.debug("Getting all childrends per address.");
     	return result;  		
     	
         
@@ -117,8 +123,9 @@ public class CommonService {
     		for(Person person : house.getPersons()) {
     			result.addPhone(person.getPhoneNumber());    			
     		}
-    	}    	
+    	}
     	
+    	logger.debug("Getting all phones from houses in a station.");
     	return result;    	
         
     }
@@ -147,7 +154,7 @@ public class CommonService {
  	result.setPersons(persons);
  	result.setStationNumber(house.getStationNumber());
  	   	
- 	
+ 	logger.debug("Getting all persons living in that adress.");
  	return result;    	
      
  }
@@ -183,7 +190,7 @@ public class CommonService {
 	
 	
  	
- 	   	
+	logger.debug("Getting all houses in a firestation.");   	
  	result.setAddresses(adresses);
  	return result;    	
      
@@ -214,7 +221,7 @@ public PersonInfoResponse personInfo(@RequestParam String firstName,@RequestPara
 	    
 	}
 	
-	
+	logger.debug("Getting a person's info.");
 	return result;    	
     
 }
@@ -239,7 +246,7 @@ public CommunityEmailResponse communityEmail(@RequestParam String city) throws E
 	    
 	}
 	
-	
+	logger.debug("Getting all mails from a city.");
 	return result;    	
     
 }
