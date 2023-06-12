@@ -5,90 +5,94 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import com.openclassrooms.safetynet.dao.MedicalRecordRepository;
 import com.openclassrooms.safetynet.model.MedicalRecord;
 
+@Component
 public class MedicalRecordServiceImpl implements MedicalRecordService {
 
     @Autowired
-    private MedicalRecordRepository dao;
+    @Qualifier("medicalRecordService")
+    private MedicalRecordRepository repo;
 	
 
 	@Override
 	public MedicalRecord createMedicalRecord(MedicalRecord medicalRecord) throws Exception {
-		Optional<MedicalRecord> existingMedicalRecord = dao.findById(medicalRecord.getId());
+		Optional<MedicalRecord> existingMedicalRecord = repo.findById(medicalRecord.getId());
     	if(existingMedicalRecord != null) {
     		throw new Exception("this Mapping already exists in the database.");
     	}else {
     		medicalRecord.setId(UUID.randomUUID().toString());
 			
-			return dao.save(medicalRecord);
+			return repo.save(medicalRecord);
 		}
 	}
 
 
 	@Override
 	public Collection<MedicalRecord> getAllMedicalRecords() {
-		return dao.findAll();
+		return repo.findAll();
 	}
 
 
 	@Override
 	public Optional<MedicalRecord> findMedicalRecordById(String id) {
-		return dao.findById(id);
+		return repo.findById(id);
 	}
 
 
 	@Override
 	public MedicalRecord findMedicalRecordByFirstNameAndLastName(String firstName, String LastName) {
-		return dao.findByFirstNameAndLastName(firstName, LastName);
+		return repo.findByFirstNameAndLastName(firstName, LastName);
 	}
 
 
 	@Override
 	public void deleteMedicalRecordByFirstNameAndLastName(String firstName, String LastName) {
-		dao.deleteByFirstNameAndLastName(firstName, LastName);
+		repo.deleteByFirstNameAndLastName(firstName, LastName);
 		
 	}
 
 
 	@Override
 	public void deleteMedicalRecordById(String id) {
-		dao.deleteById(id);
+		repo.deleteById(id);
 		
 	}
 
 
 	@Override
 	public MedicalRecord updateMedicalRecordById(MedicalRecord medicalRecord) {
-		Optional<MedicalRecord> existingMedicalRecord = dao.findById(medicalRecord.getId());
+		Optional<MedicalRecord> existingMedicalRecord = repo.findById(medicalRecord.getId());
     	if(existingMedicalRecord == null) {
     		medicalRecord.setId(UUID.randomUUID().toString());
     	}else {
     		medicalRecord.setId(existingMedicalRecord.get().getId());
 		}
     	
-    	return dao.save(medicalRecord);
+    	return repo.save(medicalRecord);
 	}
 
 
 	@Override
 	public MedicalRecord updateMedicalRecordByFirstNameAndLastName(String firstName, String LastName, MedicalRecord medicalRecord) {
-		MedicalRecord existingMedicalRecord = dao.findByFirstNameAndLastName(firstName, LastName);
+		MedicalRecord existingMedicalRecord = repo.findByFirstNameAndLastName(firstName, LastName);
     	if(existingMedicalRecord == null) {
     		medicalRecord.setId(UUID.randomUUID().toString());
     	}else {
     		medicalRecord.setId(existingMedicalRecord.getId());
 		}
     	
-    	return dao.save(medicalRecord);
+    	return repo.save(medicalRecord);
 	}
 
 
 	@Override
 	public void deleteAllMedicalRecords() {
-		dao.deleteAll();		
+		repo.deleteAll();		
 	}
 
 

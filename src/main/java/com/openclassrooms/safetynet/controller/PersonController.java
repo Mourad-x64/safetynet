@@ -31,8 +31,7 @@ import com.openclassrooms.safetynet.service.PersonService;
 @RequestMapping("/persons")
 public class PersonController {
 
-    @Autowired
-    @Qualifier(value = "personService")
+    @Autowired    
     PersonService serv;
     
     @Autowired

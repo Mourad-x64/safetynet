@@ -1,18 +1,21 @@
 package com.openclassrooms.safetynet.service;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import com.openclassrooms.safetynet.dao.PersonRepository;
 import com.openclassrooms.safetynet.model.Person;
 
+@Component
 public class PersonServiceImpl implements PersonService {
 
     @Autowired
+    @Qualifier("personService")
     PersonRepository dao;
 
 

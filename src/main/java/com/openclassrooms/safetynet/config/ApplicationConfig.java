@@ -15,19 +15,6 @@ import com.openclassrooms.safetynet.service.PersonServiceImpl;
 @ComponentScan("com.openclassrooms.safetynet")
 public class ApplicationConfig {
 
-    @Bean(name="personService")
-    public PersonService getPersonService() {
-        return new PersonServiceImpl();
-    }
     
-    @Bean(name="firestationService")
-    public FirestationService getFirestationService() {
-        return new FirestationServiceImpl();
-    }
-    
-    @Bean(name="medicalRecordService")
-    public MedicalRecordService getMedicalRecordService() {
-        return new MedicalRecordServiceImpl();
-    }
 
 }

@@ -5,64 +5,67 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import com.openclassrooms.safetynet.dao.FirestationRepository;
 import com.openclassrooms.safetynet.model.Firestation;
 
+@Component
 public class FirestationServiceImpl implements FirestationService {
 
-    @Autowired
-    private FirestationRepository dao;
+    @Autowired    
+    private FirestationRepository repo;
     
 
 	@Override
 	public Firestation createFirestationMapping(Firestation firestation) throws Exception {
-		Optional<Firestation> existingFirestationMapping = dao.findById(firestation.getId());
+		Optional<Firestation> existingFirestationMapping = repo.findById(firestation.getId());
     	if(existingFirestationMapping != null) {
     		throw new Exception("this Mapping already exists in the database.");
     	}else {
 			firestation.setId(UUID.randomUUID().toString());
 			
-			return dao.save(firestation);
+			return repo.save(firestation);
 		}
 	}
 
 
 	@Override
 	public Collection<Firestation> getAllFirestationMappings() {
-		return dao.findAll();
+		return repo.findAll();
 	}	
 
 
 	@Override
 	public Firestation updateFirestationMappingById(Firestation firestation) {
-		Optional<Firestation> existingFirestationMapping = dao.findById(firestation.getId());
+		Optional<Firestation> existingFirestationMapping = repo.findById(firestation.getId());
     	if(existingFirestationMapping == null) {
     		firestation.setId(UUID.randomUUID().toString());
     	}else {
 			firestation.setId(existingFirestationMapping.get().getId());
 		}
     	
-    	return dao.save(firestation);    
+    	return repo.save(firestation);    
 	}
 	
 	
 	@Override
 	public Firestation updateFirestationMappingByAddress(String address, Firestation firestation) {
-		Firestation existingFirestationMapping = dao.findByAddress(address);
+		Firestation existingFirestationMapping = repo.findByAddress(address);
     	if(existingFirestationMapping == null) {
     		firestation.setId(UUID.randomUUID().toString());
     	}else {
 			firestation.setId(existingFirestationMapping.getId());
 		}
     	
-    	return dao.save(firestation);    
+    	return repo.save(firestation);    
 	}
 
 
 	@Override
 	public void deleteAllFirestationMappings() {
-		dao.deleteAll();
+		repo.deleteAll();
 		
 	}
 
@@ -70,40 +73,40 @@ public class FirestationServiceImpl implements FirestationService {
 	@Override
 	public Firestation findFirestationMappingByFirestationNumber(int firestationNumber) {
 		
-		return dao.findByFirestationNumber(firestationNumber);
+		return repo.findByFirestationNumber(firestationNumber);
 	}
 
 
 	@Override
 	public Firestation findFirestationMappingByAddress(String address) {
 		
-		return dao.findByAddress(address);
+		return repo.findByAddress(address);
 	}
 	
 	@Override
 	public Optional<Firestation> findFirestationMappingById(String id) {
 		
-		return dao.findById(id);
+		return repo.findById(id);
 	}
 
 
 	@Override
 	public void deleteFirestationMappingByFirestationNumber(int firestationNumber) {
-		dao.deleteByFirestationNumber(firestationNumber);
+		repo.deleteByFirestationNumber(firestationNumber);
 		
 	}
 
 
 	@Override
 	public void deleteFirestationMappingByAddress(String address) {
-		dao.deleteByAddress(address);
+		repo.deleteByAddress(address);
 		
 	}	
 
 
 	@Override
 	public void deleteFirestationMappingById(String id) {
-		dao.deleteById(id);
+		repo.deleteById(id);
 		
 	}
 

@@ -1,7 +1,9 @@
 package com.openclassrooms.safetynet.model;
 
+import org.codehaus.plexus.component.annotations.Component;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 
 @Document(collection= "person")
 public class Person {	
@@ -16,10 +18,26 @@ public class Person {
 	    private String phoneNumber;
 	    private String address;
 	    private String city;
-	    private String zip;   
-	    	    
+	    private String zip; 
 	    
-	    
+	    		
+		
+		
+		public Person(String firstName, String lastName, String eMail, String age, String dateOfBirth,
+				String phoneNumber, String address, String city, String zip) {
+			super();
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.eMail = eMail;
+			this.age = age;
+			this.dateOfBirth = dateOfBirth;
+			this.phoneNumber = phoneNumber;
+			this.address = address;
+			this.city = city;
+			this.zip = zip;
+		}
+		
+		
 		public String getZip() {
 			return zip;
 		}
