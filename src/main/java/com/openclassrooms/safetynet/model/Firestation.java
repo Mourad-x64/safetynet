@@ -12,6 +12,13 @@ public class Firestation {
 	    private int firestationNumber;
 	    
 	    
+	    
+	    
+		public Firestation(String address, int firestationNumber) {
+			super();
+			this.address = address;
+			this.firestationNumber = firestationNumber;
+		}
 		public String getId() {
 			return id;
 		}

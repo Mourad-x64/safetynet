@@ -24,6 +24,7 @@ public class PersonServiceImpl implements PersonService {
     	Person existingPerson = dao.findByLastNameAndFirstName(person.getLastName(), person.getFirstName());
     	if(existingPerson != null) {
     		throw new Exception("this person already exists in the database.");
+    		
     	}else {
 			person.setId(UUID.randomUUID().toString());
 			
