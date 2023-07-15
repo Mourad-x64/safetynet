@@ -46,7 +46,7 @@ public class FirestationController {
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
     public String createFirestationMapping(@RequestBody Firestation firestation) {
-        logger.debug("create a firestation mapping.");        
+        logger.info("create a firestation mapping.");        
         try {
 			serv.createFirestationMapping(firestation);
 		} catch (Exception e) {
@@ -62,7 +62,7 @@ public class FirestationController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Collection<Firestation> getAllFirestationMappings() {        
-        logger.debug("Getting all Firestation Mappings.");
+        logger.info("Getting all Firestation Mappings.");
         return serv.getAllFirestationMappings();
     }
 
@@ -73,7 +73,7 @@ public class FirestationController {
      */
     @GetMapping("/{firestationNumber}")
     public Firestation getFirestationMappingByFirestationNumber(@PathVariable int firestationNumber) {
-        logger.debug("Getting firestation mapping for firestation number {}.", firestationNumber);
+        logger.info("Getting firestation mapping for firestation number {}.", firestationNumber);
         return serv.findFirestationMappingByFirestationNumber(firestationNumber);
     }
     
@@ -84,7 +84,7 @@ public class FirestationController {
      */
     @GetMapping("/{address}")
     public Firestation getFirestationMappingByAdress(@PathVariable String address) {
-        logger.debug("Getting firestation mapping for firestation address {}.", address);
+        logger.info("Getting firestation mapping for firestation address {}.", address);
         return serv.findFirestationMappingByAddress(address);
     }
     
@@ -98,7 +98,7 @@ public class FirestationController {
     @PutMapping("/updateByAddress/{address}")
     @ResponseStatus(HttpStatus.OK)
     public String updateFirestationMappingByAdress(@PathVariable String address, @RequestBody Firestation firestation) {
-        logger.debug("Updating firestation mapping with address = {}.", address);        
+        logger.info("Updating firestation mapping with address = {}.", address);        
         serv.updateFirestationMappingByAddress(address, firestation);
         return "firestation record for address= " + address + " updated.";
     }
@@ -113,7 +113,7 @@ public class FirestationController {
     @ResponseStatus(HttpStatus.OK)
     public String deleteFirestationMappingByFirestationNumnber(@PathVariable int firestationNumber) {    	       
         serv.deleteFirestationMappingByFirestationNumber(firestationNumber);
-        logger.debug("Deleting firestation mapping with firestation number= {}.", firestationNumber);
+        logger.info("Deleting firestation mapping with firestation number= {}.", firestationNumber);
         return "firestation mapping record deleted.";
     }
     
@@ -127,7 +127,7 @@ public class FirestationController {
     @ResponseStatus(HttpStatus.OK)
     public String deleteFirestationMappingByAddress(@PathVariable String address) {    	       
         serv.deleteFirestationMappingByAddress(address);
-        logger.debug("Deleting firestation mapping with address = {}.", address);
+        logger.info("Deleting firestation mapping with address = {}.", address);
         return "firestation mapping record deleted.";
     }
     
@@ -138,7 +138,7 @@ public class FirestationController {
      */
     @DeleteMapping(value= "/deleteAll")
     public String deleteAllFirestationMappings() {
-        logger.debug("Deleting all firestation mappings.");
+        logger.info("Deleting all firestation mappings.");
         serv.deleteAllFirestationMappings();
         return "All firestation mapping records deleted.";
     }

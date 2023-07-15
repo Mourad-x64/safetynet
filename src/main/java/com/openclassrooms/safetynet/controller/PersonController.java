@@ -48,7 +48,7 @@ public class PersonController {
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
     public String create(@RequestBody Person person) {
-        logger.debug("create a person.");        
+        logger.info("create a person.");        
         try {
 			serv.createPerson(person);
 		} catch (Exception e) {
@@ -65,7 +65,7 @@ public class PersonController {
     @ResponseStatus(HttpStatus.OK)
     public Collection<Person> getAll() {
         System.out.println("-------> : getAllPersons");
-        logger.debug("Getting all persons.");
+        logger.info("Getting all persons.");
         return serv.getAllPersons();
     }
 
@@ -76,7 +76,7 @@ public class PersonController {
      */
     @GetMapping("/{firstName}/{lastName}")
     public Person getByFirstNameAndLastName(@PathVariable String firstName, @PathVariable String lastName) {
-        logger.debug("Getting persons with firstname {} and lastname {}.",firstName, lastName );
+        logger.info("Getting persons with firstname {} and lastname {}.",firstName, lastName );
         return serv.findByLastNameAndFirstName(lastName, firstName);
     }
 
@@ -89,7 +89,7 @@ public class PersonController {
     @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
     public String update(@PathVariable(value= "id") String id, @RequestBody Person person) {
-        logger.debug("Updating person with person-id= {}.", id);
+        logger.info("Updating person with person-id= {}.", id);
         person.setId(id);
         serv.updatePerson(person);
         return "user record for person-id= " + id + " updated.";
@@ -106,7 +106,7 @@ public class PersonController {
     public String delete(@PathVariable String firstName, @PathVariable String lastName) throws JSONException {
     	String id = serv.findByLastNameAndFirstName(lastName, firstName).getId();        
         serv.deletePersonById(id);
-        logger.debug("Deleting person "+lastName+" "+firstName+" with person-id= {}.", id);
+        logger.info("Deleting person "+lastName+" "+firstName+" with person-id= {}.", id);
         return "person record for "+lastName+" "+firstName+" deleted.";
     }
 
@@ -116,7 +116,7 @@ public class PersonController {
      */
     @DeleteMapping(value= "/deleteall")
     public String deleteAll() {
-        logger.debug("Deleting all persons.");
+        logger.info("Deleting all persons.");
         serv.deleteAllPersons();
         return "All persons records deleted.";
     }

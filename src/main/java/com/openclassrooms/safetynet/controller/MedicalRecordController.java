@@ -45,7 +45,7 @@ public class MedicalRecordController {
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
     public String createMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
-        logger.debug("create a medical record.");        
+        logger.info("create a medical record.");        
         try {
 			serv.createMedicalRecord(medicalRecord);
 		} catch (Exception e) {
@@ -61,7 +61,7 @@ public class MedicalRecordController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Collection<MedicalRecord> getAllMedicalRecords() {        
-        logger.debug("Getting all medical records.");
+        logger.info("Getting all medical records.");
         return serv.getAllMedicalRecords();
     }
 
@@ -73,7 +73,7 @@ public class MedicalRecordController {
      */
     @GetMapping("/{firstName}/{lastName}")
     public MedicalRecord getMedicalRecordByFirstNameAndLastname(@PathVariable String firstName, @PathVariable String LastName) {
-        logger.debug("Getting medical record for firstname {} lastname {}.", firstName, LastName);
+        logger.info("Getting medical record for firstname {} lastname {}.", firstName, LastName);
         return serv.findMedicalRecordByFirstNameAndLastName(firstName, LastName);
     }    
     
@@ -88,7 +88,7 @@ public class MedicalRecordController {
     @PutMapping("/update/{firstName}/{lastName}")
     @ResponseStatus(HttpStatus.OK)
     public String updateMedicalRecord(@PathVariable String firstName, @PathVariable String lastName, @RequestBody MedicalRecord medicalRecord) {
-        logger.debug("Updating medical record for {} {}.", firstName, lastName);        
+        logger.info("Updating medical record for {} {}.", firstName, lastName);        
         serv.updateMedicalRecordByFirstNameAndLastName(firstName, lastName, medicalRecord);
         return "Medical record for "+firstName+" "+lastName+" updated.";
     }
@@ -104,7 +104,7 @@ public class MedicalRecordController {
     @ResponseStatus(HttpStatus.OK)
     public String deleteMedicalRecord(@PathVariable String firstName, @PathVariable String lastName) {    	       
         serv.deleteMedicalRecordByFirstNameAndLastName(firstName, lastName);
-        logger.debug("Deleting medical record for {} {}.", firstName, lastName);
+        logger.info("Deleting medical record for {} {}.", firstName, lastName);
         return "Medical record deleted.";
     }   
     
@@ -115,7 +115,7 @@ public class MedicalRecordController {
      */
     @DeleteMapping(value= "/deleteAll")
     public String deleteAllMedicalRecords() {
-        logger.debug("Deleting all medical records.");
+        logger.info("Deleting all medical records.");
         serv.deleteAllMedicalRecords();
         return "All medical records deleted.";
     }

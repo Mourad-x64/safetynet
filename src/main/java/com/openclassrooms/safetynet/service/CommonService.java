@@ -107,7 +107,7 @@ public class CommonService {
     	result.setAdults(adults);
     	result.setChildrens(childrens);
     	
-    	logger.debug("Getting all childrends per address.");
+    	logger.info("Getting all childrends per address.");
     	return result;  		
     	
         
@@ -128,7 +128,7 @@ public class CommonService {
     		}
     	}
     	
-    	logger.debug("Getting all phones from houses in a station.");
+    	logger.info("Getting all phones from houses in a station.");
     	return result;    	
         
     }
@@ -157,7 +157,7 @@ public class CommonService {
  	result.setPersons(persons);
  	result.setStationNumber(house.getStationNumber());
  	   	
- 	logger.debug("Getting all persons living in that adress.");
+ 	logger.info("Getting all persons living in that adress.");
  	return result;    	
      
  }
@@ -193,7 +193,7 @@ public class CommonService {
 	
 	
  	
-	logger.debug("Getting all houses in a firestation.");   	
+	logger.info("Getting all houses in a firestation.");   	
  	result.setAddresses(adresses);
  	return result;    	
      
@@ -224,7 +224,7 @@ public PersonInfoResponse personInfo(@RequestParam String firstName,@RequestPara
 	    
 	}
 	
-	logger.debug("Getting a person's info.");
+	logger.info("Getting a person's info.");
 	return result;    	
     
 }
@@ -249,7 +249,7 @@ public CommunityEmailResponse communityEmail(@RequestParam String city) throws E
 	    
 	}
 	
-	logger.debug("Getting all mails from a city.");
+	logger.info("Getting all mails from a city.");
 	return result;    	
     
 }
