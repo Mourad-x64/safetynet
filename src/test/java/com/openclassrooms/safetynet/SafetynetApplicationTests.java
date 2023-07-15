@@ -432,7 +432,7 @@ class SafetynetApplicationTests {
 	@Test
     public void testChildAlert() throws Exception {
 		
-		ChildAlertResponse response = commonService.firestation("1509 Culver St");
+		ChildAlertResponse response = commonService.childAlert("1509 Culver St");
 		Assertions.assertEquals(3, response.getAdults().size());
 		Assertions.assertEquals(2, response.getChildrens().size());
 		

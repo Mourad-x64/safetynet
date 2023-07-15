@@ -89,7 +89,7 @@ public class CommonService {
     
     @GetMapping("childAlert")  
     
-    public ChildAlertResponse firestation(@RequestParam String address) throws Exception {
+    public ChildAlertResponse childAlert(@RequestParam String address) throws Exception {
     	House house = dataManager.getHouses().get(address);    	
     	ChildAlertResponse result = new ChildAlertResponse();    	
     	
