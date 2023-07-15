@@ -1,4 +1,4 @@
-package com.openclassrooms.safetynet.dao;
+package com.openclassrooms.safetynet.repository;
 
 
 import org.springframework.beans.factory.annotation.Qualifier;

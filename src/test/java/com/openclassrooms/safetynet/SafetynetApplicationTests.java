@@ -12,12 +12,20 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration;
 import org.springframework.context.annotation.Import;
 
-import com.openclassrooms.safetynet.dao.FirestationRepository;
-import com.openclassrooms.safetynet.dao.MedicalRecordRepository;
-import com.openclassrooms.safetynet.dao.PersonRepository;
 import com.openclassrooms.safetynet.model.Firestation;
 import com.openclassrooms.safetynet.model.MedicalRecord;
 import com.openclassrooms.safetynet.model.Person;
+import com.openclassrooms.safetynet.repository.FirestationRepository;
+import com.openclassrooms.safetynet.repository.MedicalRecordRepository;
+import com.openclassrooms.safetynet.repository.PersonRepository;
+import com.openclassrooms.safetynet.response.ChildAlertResponse;
+import com.openclassrooms.safetynet.response.CommunityEmailResponse;
+import com.openclassrooms.safetynet.response.FireResponse;
+import com.openclassrooms.safetynet.response.FirestationResponse;
+import com.openclassrooms.safetynet.response.FloodStationsResponse;
+import com.openclassrooms.safetynet.response.PersonInfoResponse;
+import com.openclassrooms.safetynet.response.PhoneAlertResponse;
+import com.openclassrooms.safetynet.service.CommonService;
 import com.openclassrooms.safetynet.service.FirestationService;
 import com.openclassrooms.safetynet.service.MedicalRecordService;
 import com.openclassrooms.safetynet.service.PersonService;
@@ -40,10 +48,14 @@ class SafetynetApplicationTests {
 	MedicalRecordRepository medicalRecordRepo;
 	@Autowired
 	MedicalRecordService medicalRecordService;
+	@Autowired
+	CommonService commonService;
 	
 	@BeforeEach
 	public void dataBaseReset() {
 		personService.deleteAllPersons();
+		firestationService.deleteAllFirestationMappings();
+		medicalRecordService.deleteAllMedicalRecords();
 	}
 	
 	public void init() throws Exception {		
@@ -89,7 +101,7 @@ class SafetynetApplicationTests {
         
     }
 	
-	@Test
+	@Test	
     public void testCreateFirestation() {
 		
         
@@ -114,7 +126,7 @@ class SafetynetApplicationTests {
         
     }
 	
-	@Test
+	@Test	
     public void testCreateMedicalRecord() {
 		
         
@@ -172,7 +184,7 @@ class SafetynetApplicationTests {
     }
 	
 	
-	@Test
+	@Test	
     public void testGetFirestation() {	
 			
 		Firestation existingFirestatiton = firestationRepo.findByAddress(getDefaultFirestation().getAddress());
@@ -205,7 +217,7 @@ class SafetynetApplicationTests {
     }
 	
 	
-	@Test
+	@Test	
     public void testGetMedicalRecord() {	
 			
 		MedicalRecord existingMedicalRecord = medicalRecordRepo.findByFirstNameAndLastName(getDefaultMedicalRecord().getFirstName(), getDefaultMedicalRecord().getLastName());
@@ -406,6 +418,84 @@ class SafetynetApplicationTests {
         
         
     }
+	
+	
+	@Test
+    public void testFirestation() throws Exception {
+		
+		FirestationResponse response = commonService.firestation(1);
+		Assertions.assertEquals(5, response.getAdultNumber());
+		Assertions.assertEquals(1, response.getChildNumber());
+        
+    }
+	
+	@Test
+    public void testChildAlert() throws Exception {
+		
+		ChildAlertResponse response = commonService.firestation("1509 Culver St");
+		Assertions.assertEquals(3, response.getAdults().size());
+		Assertions.assertEquals(2, response.getChildrens().size());
+		
+        
+    }
+	
+	@Test
+    public void testPhoneAlert() throws Exception {
+		
+		PhoneAlertResponse response = commonService.phoneAlert(1);
+		Assertions.assertEquals(6, response.getPhones().size());	
+		
+        
+    }
+	
+	@Test
+    public void testFire() throws Exception {
+		
+		FireResponse response = commonService.fire("1509 Culver St");
+		Assertions.assertEquals(5, response.getPersons().size());
+		Assertions.assertEquals(3, response.getStationNumber());
+		
+        
+    }
+	
+	@Test
+    public void testFloodStations() throws Exception {
+		
+		ArrayList<Integer> stations = new ArrayList<>();
+		stations.add(1);
+		stations.add(3);
+		
+		FloodStationsResponse response = commonService.flood(stations);
+		Assertions.assertEquals(7, response.getAddresses().size());
+		
+		
+        
+    }
+	
+	@Test
+    public void testPersonInfo() throws Exception {
+		
+		PersonInfoResponse response = commonService.personInfo("John", "Boyd");
+		Assertions.assertEquals("Boyd", response.getLastName());
+		
+		
+        
+    }
+	
+	@Test
+    public void testCommunityEmail() throws Exception {
+		
+		CommunityEmailResponse response = commonService.communityEmail("Culver");
+		Assertions.assertEquals(23, response.getEmails().size());
+		
+		
+        
+    }
+	
+	
+	
+	
+	
 	
 
 }

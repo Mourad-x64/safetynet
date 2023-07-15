@@ -1,5 +1,7 @@
 package com.openclassrooms.safetynet.model;
 
+import java.util.UUID;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,6 +20,7 @@ public class Firestation {
 			super();
 			this.address = address;
 			this.firestationNumber = firestationNumber;
+			this.id = UUID.randomUUID().toString();
 		}
 		public String getId() {
 			return id;

@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.openclassrooms.safetynet.dao.FirestationRepository;
 import com.openclassrooms.safetynet.model.Firestation;
+import com.openclassrooms.safetynet.repository.FirestationRepository;
 
 @Component
 public class FirestationServiceImpl implements FirestationService {
@@ -21,7 +21,7 @@ public class FirestationServiceImpl implements FirestationService {
 	@Override
 	public Firestation createFirestationMapping(Firestation firestation) throws Exception {
 		Optional<Firestation> existingFirestationMapping = repo.findById(firestation.getId());
-    	if(existingFirestationMapping != null) {
+    	if(existingFirestationMapping.isPresent()) {
     		throw new Exception("this Mapping already exists in the database.");
     	}else {
 			firestation.setId(UUID.randomUUID().toString());
@@ -40,7 +40,7 @@ public class FirestationServiceImpl implements FirestationService {
 	@Override
 	public Firestation updateFirestationMappingById(Firestation firestation) {
 		Optional<Firestation> existingFirestationMapping = repo.findById(firestation.getId());
-    	if(existingFirestationMapping == null) {
+    	if(existingFirestationMapping.isEmpty()) {
     		firestation.setId(UUID.randomUUID().toString());
     	}else {
 			firestation.setId(existingFirestationMapping.get().getId());

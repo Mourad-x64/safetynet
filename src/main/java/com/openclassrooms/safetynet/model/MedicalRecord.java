@@ -2,6 +2,7 @@ package com.openclassrooms.safetynet.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -26,6 +27,7 @@ public class MedicalRecord {
 			this.birthDate = birthDate;
 			this.medications = medications;
 			this.allergies = allergies;
+			this.id = UUID.randomUUID().toString();
 		}
 		public String getId() {
 			return id;

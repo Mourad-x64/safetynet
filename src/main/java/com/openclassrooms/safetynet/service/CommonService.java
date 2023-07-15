@@ -26,8 +26,11 @@ import com.openclassrooms.safetynet.response.FloodStationsResponse;
 import com.openclassrooms.safetynet.response.PersonInfoResponse;
 import com.openclassrooms.safetynet.response.PhoneAlertResponse;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/")
+@Slf4j
 public class CommonService {
 	
 	@Autowired
@@ -80,7 +83,7 @@ public class CommonService {
     	result.setAdultNumber(adult);
     	result.setChildNumber(child);
     	
-    	logger.debug("Getting all firestations.");
+    	logger.info("Getting all firestations.");
         return result;
     }
     
@@ -162,7 +165,7 @@ public class CommonService {
  
 @GetMapping("flood/stations")  
  
- public FloodStationsResponse fire(@RequestParam List<Integer> stations) throws Exception {
+ public FloodStationsResponse flood(@RequestParam List<Integer> stations) throws Exception {
 	
 	Map<String, Map<String, Person>> adresses = new HashMap<>();
 	Map<String, Person> personsByName = new HashMap<>();	

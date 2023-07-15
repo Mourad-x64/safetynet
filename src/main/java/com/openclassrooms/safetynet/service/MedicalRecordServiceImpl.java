@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.openclassrooms.safetynet.dao.MedicalRecordRepository;
 import com.openclassrooms.safetynet.model.MedicalRecord;
+import com.openclassrooms.safetynet.repository.MedicalRecordRepository;
 
 @Component
 public class MedicalRecordServiceImpl implements MedicalRecordService {
@@ -22,7 +22,7 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 	@Override
 	public MedicalRecord createMedicalRecord(MedicalRecord medicalRecord) throws Exception {
 		Optional<MedicalRecord> existingMedicalRecord = repo.findById(medicalRecord.getId());
-    	if(existingMedicalRecord != null) {
+    	if(existingMedicalRecord.isPresent()) {
     		throw new Exception("this Mapping already exists in the database.");
     	}else {
     		medicalRecord.setId(UUID.randomUUID().toString());
@@ -67,7 +67,7 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 	@Override
 	public MedicalRecord updateMedicalRecordById(MedicalRecord medicalRecord) {
 		Optional<MedicalRecord> existingMedicalRecord = repo.findById(medicalRecord.getId());
-    	if(existingMedicalRecord == null) {
+    	if(existingMedicalRecord.isEmpty()) {
     		medicalRecord.setId(UUID.randomUUID().toString());
     	}else {
     		medicalRecord.setId(existingMedicalRecord.get().getId());

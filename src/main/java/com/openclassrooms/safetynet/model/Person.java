@@ -1,6 +1,7 @@
 package com.openclassrooms.safetynet.model;
 
-import org.codehaus.plexus.component.annotations.Component;
+import java.util.UUID;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -35,6 +36,7 @@ public class Person {
 			this.address = address;
 			this.city = city;
 			this.zip = zip;
+			this.id = UUID.randomUUID().toString();
 		}
 		
 		
