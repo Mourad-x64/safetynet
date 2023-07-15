@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration;
 import org.springframework.context.annotation.Import;
 
+import com.openclassrooms.safetynet.controller.CommonController;
 import com.openclassrooms.safetynet.model.Firestation;
 import com.openclassrooms.safetynet.model.MedicalRecord;
 import com.openclassrooms.safetynet.model.Person;
@@ -25,7 +26,6 @@ import com.openclassrooms.safetynet.response.FirestationResponse;
 import com.openclassrooms.safetynet.response.FloodStationsResponse;
 import com.openclassrooms.safetynet.response.PersonInfoResponse;
 import com.openclassrooms.safetynet.response.PhoneAlertResponse;
-import com.openclassrooms.safetynet.service.CommonService;
 import com.openclassrooms.safetynet.service.FirestationService;
 import com.openclassrooms.safetynet.service.MedicalRecordService;
 import com.openclassrooms.safetynet.service.PersonService;
@@ -49,7 +49,7 @@ class SafetynetApplicationTests {
 	@Autowired
 	MedicalRecordService medicalRecordService;
 	@Autowired
-	CommonService commonService;
+	CommonController commonService;
 	
 	@BeforeEach
 	public void dataBaseReset() {

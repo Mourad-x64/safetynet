@@ -1,4 +1,4 @@
-package com.openclassrooms.safetynet.service;
+package com.openclassrooms.safetynet.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/")
 @Slf4j
-public class CommonService {
+public class CommonController {
 	
 	@Autowired
 	private DataManager dataManager; 
