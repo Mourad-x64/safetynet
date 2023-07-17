@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/")
-@Slf4j
+
 public class CommonController {
 	
 	@Autowired
